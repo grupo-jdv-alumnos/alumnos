@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.custom.i18n.resources" value="global" />
+    
+    <package name="default" namespace="/" extends="struts-default">
+       
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>  
+        <!-- Login -->
+            
+        <action name="login" >             
+            <result name="success">pages/login.jsp</result>
+        </action>
+                
+        <action name="loginfailed">
+            <result name="success">pages/login.jsp</result>
+        </action>
+                
+        <action name="logout" >
+            <result name="success">pages/login.jsp</result>
+        </action>
+                
+        <action name="mainMenu">
+            <result name="success" type="tiles">d_principal</result>
+        </action>
+            
+            
+        <!-- Usuarios -->
+        
+        <action name="userAction" 
+                class="pe.edu.cibertec.user.action.UserAction" >
+            <result name="success">pages/user.jsp</result>
+        </action>
+		
+        <action name="userSpringAction" 
+                class="userSpringAction" >
+            <result name="success">pages/user.jsp</result>
+        </action>
+                
+        <!-- Autor -->
+        <action name="autorList" 
+                class="autorAction" method="listarAutores">
+            <result name="success" type="tiles">d_listadoAutor</result>
+        </action>
+                
+        <action name="nuevoAutor" 
+                class="autorAction" method="nuevoAutor">
+            <result name="success" type="tiles">d_nuevoAutor</result>
+                        
+        </action>
+                
+        <action name="guardarAutor" 
+                class="autorAction" method="guardarAutor">
+            <result name="success" type="redirectAction">autorList</result>
+        </action>
+                
+        <action name="eliminarAutor" 
+                class="autorAction" method="eliminarAutor">
+            <result name="success" type="redirectAction">autorList</result>
+            <result name="accessDenied">pages/accessdenied.jsp</result>
+        </action>
+                
+        <!-- ALumno -->       
+                
+        <action name="alumnosList" 
+                class="alumnoAction" method="listarAlumnos">
+            <result name="success" type="tiles">d_listadoAlumno</result>
+        </action>     
+                
+        <action name="eliminarAlumno" 
+                class="alumnoAction" method="eliminarAlumno">
+            <result name="success" type="redirectAction">alumnosList</result>
+            <result name="accessDenied">pages/accessdenied.jsp</result>
+        </action>
+                
+        <action name="nuevoAlumno" 
+                class="alumnoAction" method="nuevoAlumno">
+            <result name="success" type="tiles">d_nuevoAlumno</result>                                
+        </action>
+        
+         <action name="cargarAlumno" 
+                class="alumnoAction" method="cargarAlumno">
+            <result name="success" type="tiles">d_nuevoAlumno</result>                                
+        </action>
+                
+        <action name="guardarAlumno" 
+                class="alumnoAction" method="guardarAlumno">
+            <result name="success" type="redirectAction">alumnosList</result>
+        </action>               
+               
+                
+                
+                
+    </package>
+        
+    <package name="adminModule" namespace="/admin" extends="default">
+        
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types> 
+        <!--         Usuarios -->
+        <action name="usuariosList" class="userAction" method="listarUsuarios">
+            <result name="success" type="tiles">d_listadoUsuario</result>
+        </action>
+                
+        <action name="nuevoUsuario" class="userAction" method="nuevoUsuario">
+            <result name="success" type="tiles">d_nuevoUsuario</result>
+        </action>
+                
+        <action name="guardarUsuario" class="userAction" method="insertarUsuario">
+            <result name="success" type="redirectAction">usuariosList</result>
+        </action>
+                
+        <action name="eliminarUsuario" class="userAction" method="eliminarUsuario">
+            <result name="success" type="redirectAction">usuariosList</result>
+            <result name="accessDenied">pages/accessdenied.jsp</result>
+        </action>
+                
+        <!--         Roles -->
+        <action name="rolesList" class="roleAction" method="listarRoles">
+            <result name="success" type="tiles">d_listadoRol</result>
+        </action>
+                
+        <action name="newRole" class="roleAction" method="nuevoRol">
+            <result name="success" type="tiles">d_nuevoRol</result>
+        </action>
+                
+        <action name="guardarRole" class="roleAction" method="insertarRol">
+            <result name="success" type="redirectAction">rolesList</result>
+        </action>
+                
+        <action name="eliminarRole" class="roleAction" method="eliminarRol">
+            <result name="success" type="redirectAction">rolesList</result>
+            <result name="accessDenied">pages/accessdenied.jsp</result>
+        </action>
+            
+    </package>
+	
+	
+</struts>

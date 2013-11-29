@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/Struts2Example">
+  <!--<Resource auth="Container" 
+              driverClassName="com.mysql.jdbc.Driver" 
+              maxActive="15" 
+              name="jdbc/blogdb" 
+              password="root" 
+              type="javax.sql.DataSource" 
+              url="jdbc:mysql://localhost:3306/blogdb" 
+              username="root"/>
+              
+    <Loader
+        loaderClass="org.springframework.instrument.classloading.tomcat.TomcatInstrumentableClassLoader"/> -->
+</Context>
